@@ -1,17 +1,11 @@
 import React, { useMemo } from 'react'
 import { useTable } from 'react-table'
+import tableStructure from './tableStructure'
 
 const EmployeeTable = ({ data }) => {
-  const columns = useMemo(
-    () => [
-      {
-        Header: 'First Name',
-        accessor: 'firstName',
-      },
-    ],
-    []
-  )
+  const columns = useMemo(() => tableStructure, [])
   const tableInstance = useTable({ columns, data })
+
   const {
     getTableProps,
     getTableBodyProps,
