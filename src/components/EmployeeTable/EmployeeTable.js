@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react'
-import { useTable } from 'react-table'
+import { useSortBy, useTable } from 'react-table'
 import styled from 'styled-components'
 import tableStructure from './tableStructure'
 
 const EmployeeTable = ({ data }) => {
   const columns = useMemo(() => tableStructure, [])
-  const tableInstance = useTable({ columns, data })
+  const tableInstance = useTable({ columns, data }, useSortBy)
 
   const {
     getTableProps,
@@ -21,7 +21,9 @@ const EmployeeTable = ({ data }) => {
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                {column.render('Header')}
+              </th>
             ))}
           </tr>
         ))}
