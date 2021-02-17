@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import { useTable } from 'react-table'
+import styled from 'styled-components'
 import tableStructure from './tableStructure'
 
 const EmployeeTable = ({ data }) => {
@@ -15,7 +16,7 @@ const EmployeeTable = ({ data }) => {
   } = tableInstance
 
   return (
-    <table {...getTableProps()}>
+    <Table {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
@@ -37,8 +38,23 @@ const EmployeeTable = ({ data }) => {
           )
         })}
       </tbody>
-    </table>
+    </Table>
   )
 }
 
 export default EmployeeTable
+
+const Table = styled.table`
+  width: 70vw;
+  border: 1px solid black;
+  border-collapse: collapse;
+  td,
+  th {
+    border: 1px solid black;
+    text-align: center;
+    padding: 3px;
+  }
+  tr:nth-child(even) {
+    background-color: #eee;
+  }
+`
